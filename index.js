@@ -8,6 +8,7 @@ function ThroughStream (write, end, options) {
   }
 
   Transform.call(this, options);
+  end = end || function () { this.queue(null) }
 
   this._write_ = write.bind(this);
   this.once('end', end.bind(this));
